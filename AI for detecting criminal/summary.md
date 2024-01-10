@@ -1,37 +1,41 @@
-# Introduction
-this project is about detecting criminal or abnormal behaviors.
-which are useful by following reasons:
-- evidence can be easily obtained even from many sources.
-- can be used to notify near by police station (sometime it is hard for hostages to call polices).
-- other kind of anomaly can be observed effectively
-# Knowledges
-In order to solve the problem, we need to receive images from the camera and then detect something out of it. and not only we need to focus on spatial elements we also need to focus on the temporal elements because in real world event is happen in sequence. 
+# Project Overview: AI-Driven Criminal Behavior Detection
 
-To detect these behaviors, professor said that she use GAN model with supervise learning method to learn and highlight zone that have abnormal behaviors. and to did that easily we need object detection model and the popular one is YOLO (You Only Look Once) model which have many version which updated to optimize the performance.
+## Introduction
+This initiative focuses on the utilization of AI to identify criminal and abnormal activities. The benefits of this approach include:
+- Simplified acquisition of evidence from diverse sources.
+- Capability to alert nearby police stations, crucial in situations where victims cannot reach out to law enforcement.
+- Effective monitoring and identification of various anomalies.
 
-## YOLO overview
-they name this model "You Only Look Once" because this model get bounding box and classification result directly from raw images.
-and the method of training is 
-|first separate image to grid|then train to detect bounding box|
-|----|----|
-|![Alt text](image-2.png)|![Alt text](image-1.png)|
+## Conceptual Framework
+The core of this project revolves around processing camera feeds to discern anomalies. This involves:
+- Analyzing both spatial aspects (location-based anomalies) and temporal dynamics (sequence of events).
+- Utilizing a Generative Adversarial Network (GAN) model combined with supervised learning for anomaly detection.
+- Implementing the YOLO (You Only Look Once) object detection model, known for its efficiency and various performance-optimized versions.
 
-**note that:** output size is n grid x n grid x (5 x bounding box/grid + number of class )
+## YOLO Model Insights
+YOLO, standing for "You Only Look Once," uniquely identifies bounding boxes and classifies objects in a single analysis of the image. The training methodology includes:
+- Dividing the image into a grid system.
+- Training the model to detect bounding boxes within each grid segment.
+  
+| Image Segmentation into Grid | Bounding Box Detection Training |
+|------------------------------|---------------------------------|
+| ![Grid System](image-2.png)  | ![Training Process](image-1.png)|
 
-then it will do post processing to merge overlap bounding box and remove duplicate result by apply thredshold on confidence scores of each boxes.
-### objective function 
-- localization loss -> euclidian distance (MSE)
-    - position, size 
-    - bounding box
-- classification loss (MSE of possibilities/ binary crosentropy)
-- confidence loss (MSE)
-# workshop
-in this workshop I have Annotage 100 images from the video which can be access here: https://app.roboflow.com/ds/8iISTGAJ0P?key=9s7qZp3oqr
-and here is result after training which have pretty decent performance.
-![Alt text](image-3.png)
-![Alt text](image-4.png)
+**Note:** The output size is n grid x n grid x (5 x bounding box/grid + number of classes).
 
-# Application
-for applying this model in real world we need to know our budget.
-if we have high performance GPU we can centralize operation and use it as  single API gate way for many cameras.
-but if there is bottleneck problem that effect the performance of model, we may need to consider doing load balancing by using cloud computing and separate section for camera to solve the problem.
+The model then performs post-processing to consolidate overlapping bounding boxes and eliminates duplicates by applying confidence score thresholds.
+
+### Objective Function Components
+- **Localization Loss:** Uses Euclidean distance (Mean Squared Error) for position, size, and bounding box accuracy.
+- **Classification Loss:** Applies Mean Squared Error for probabilities or binary cross-entropy.
+- **Confidence Loss:** Managed through Mean Squared Error.
+
+## Workshop and Results
+During a recent workshop, I annotated 100 images from a video available [here](https://app.roboflow.com/ds/8iISTGAJ0P?key=9s7qZp3oqr). The training yielded promising results:
+![Training Result 1](image-3.png)
+![Training Result 2](image-4.png)
+
+## Real-World Application Considerations
+Deploying this model effectively requires budgetary considerations:
+- For setups with high-performance GPUs, a centralized operation with a single API gateway for multiple cameras is feasible.
+- In case of performance bottlenecks, employing cloud computing for load balancing and segmenting camera feeds may be necessary to maintain efficiency.
