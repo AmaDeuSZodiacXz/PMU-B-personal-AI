@@ -1,4 +1,28 @@
 # Project Overview: AI-Driven Criminal Behavior Detection
+# Train YOLOv8 Object Detection on Custom Dataset
+
+This Jupyter notebook provides a comprehensive guide to training a YOLOv8 object detection model with a custom dataset. The key steps and code snippets are summarized below:
+
+## Environment Setup
+1. **Check NVIDIA GPU**: Ensuring the availability of a GPU for training.
+2. **Setting Up Working Directory**: Establishing the current working directory.
+3. **Installing Ultralytics Library**: Required for YOLOv8 training.
+
+## Installation Alternatives
+1. **Git Clone Method**: An alternative method for installing the Ultralytics library by cloning the GitHub repository.
+
+## Object Detection Demonstration
+1. **Importing YOLO from Ultralytics**: To use the YOLO model for object detection.
+2. **Running a Test Detection**: Demonstrating the model's capability with a sample image.
+
+## Key Code Snippets
+1. **Environment Setup**
+   ```python
+   !nvidia-smi
+   import os
+   HOME = os.getcwd()
+   print(HOME)
+   !pip install ultralytics==8.0.20
 
 ## Introduction
 This initiative focuses on the utilization of AI to identify criminal and abnormal activities. The benefits of this approach include:
